@@ -1,24 +1,29 @@
-class Player {
-  constructor() {
-    this.sprite = game.add.sprite(game.width / 2, game.height - 150, "player");
-    this.sprite.anchor.set(0.5, 0.5);
-    game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-    this.sprite.body.collideWorldBounds = true;
-    this.sprite.body.drag.set(1550);
+Player = function(game) {
+  Phaser.Sprite.call(this, game, game.width / 2, game.height - 75, "player");
+  this.anchor.set(0.5, 0.5);
+  game.physics.enable(this, Phaser.Physics.ARCADE);
+  this.body.collideWorldBounds = true;
+  this.body.drag.set(1550);
 
-    this.weapon = new Weapon.SingleBullet(game);
+  game.add.existing(this);
+
+  this.weapon = new Weapon.SingleBullet(game);
+};
+
+Player.prototype = Object.create(Phaser.Sprite.prototype);
+Player.prototype.constructor = Player;
+
+Player.prototype.update2 = function() {
+  if (game.input.activePointer.isDown) {
+    game.physics.arcade.moveToXY(
+      this,
+      game.input.activePointer.x,
+      this.y,
+      200,
+      250
+    );
+    this.weapon.fire(this);
+  } else {
+    this.body.velocity.x = 0;
   }
-  update() {
-    if (game.input.activePointer.isDown) {
-      game.physics.arcade.moveToXY(
-        this.sprite,
-        game.input.activePointer.x,
-        this.sprite.y,
-        200, 250
-      );
-      this.weapon.fire(this.sprite);
-    } else {
-      this.sprite.body.velocity.x = 0;
-    }
-  }
-}
+};

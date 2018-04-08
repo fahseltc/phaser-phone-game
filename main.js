@@ -8,7 +8,7 @@ var conf = {
   scaleMode: Phaser.ScaleManager.SHOW_ALL //RESIZE//SHOW_ALL //NO_SCALE
 };
 
-window.scrollTo(0,1);
+
 var game = new Phaser.Game(conf);
 
 game.state.add("play", play_state);

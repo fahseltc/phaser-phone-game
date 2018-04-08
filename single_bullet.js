@@ -30,13 +30,12 @@ Weapon.SingleBullet.prototype.fire = function(source) {
     return;
   }
 
-  var x = source.x + 10;
-  var y = source.y + 10;
+  var initial_bullet_x = source.x;
+  var initial_bullet_y = source.y - 25;
 
   var bullet = this.getFirstExists(false);
   if(bullet) {
-    console.log(bullet);
-    bullet.fire(x, y, 0, this.bulletSpeed, 0, 0);
+    bullet.fire(initial_bullet_x, initial_bullet_y, 0, this.bulletSpeed, 0, 0);
     this.nextFire = this.game.time.time + this.fireRate;
   }
 };
