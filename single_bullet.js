@@ -12,7 +12,7 @@ Weapon.SingleBullet = function(game) {
   );
 
   this.nextFire = 0;
-  this.bulletSpeed = 600;
+  this.bulletSpeed = 900;
   this.fireRate = 200;
 
   for (var i = 0; i < 64; i++) {
@@ -34,7 +34,7 @@ Weapon.SingleBullet.prototype.fire = function(source) {
   var initial_bullet_y = source.y - 25;
 
   var bullet = this.getFirstExists(false);
-  if(bullet) {
+  if (bullet) {
     bullet.fire(initial_bullet_x, initial_bullet_y, 0, this.bulletSpeed, 0, 0);
     this.nextFire = this.game.time.time + this.fireRate;
   }

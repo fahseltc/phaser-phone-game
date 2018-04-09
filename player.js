@@ -13,7 +13,7 @@ Player = function(game) {
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
-Player.prototype.update2 = function() {
+Player.prototype.update = function() {
   if (game.input.activePointer.isDown) {
     game.physics.arcade.moveToXY(
       this,

@@ -6,6 +6,7 @@ Bullet = function(game, key) {
   this.exists = false;
   this.tracking = false;
   this.scaleSpeed = 0;
+  game.physics.enable(this, Phaser.Physics.ARCADE);
 };
 
 Bullet.prototype = Object.create(Phaser.Sprite.prototype);
@@ -18,7 +19,11 @@ Bullet.prototype.fire = function(x, y, angle, speed, gx, gy) {
   this.reset(x, y);
   //this.scale.set(1);
 
-  this.game.physics.arcade.velocityFromAngle(angle - 90, speed, this.body.velocity);
+  this.game.physics.arcade.velocityFromAngle(
+    angle - 90,
+    speed,
+    this.body.velocity
+  );
 
   this.angle = angle;
 
